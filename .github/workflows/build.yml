@@ -1,15 +1,16 @@
 name: build
 
-on: [push, pull_request]
+on: 
+  workflow_dispatch:
 
 jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-22.04, macos-11]
-        compiler: [gcc, clang]
-        crypto: [openssl, gnutls]
-        bittorrent: [with-bt, without-bt]
+        os: [ubuntu-22.04]
+        compiler: [gcc]
+        crypto: [gnutils]
+        bittorrent: [without-bt]
         exclude:
         - os: macos-11
           crypto: gnutls
