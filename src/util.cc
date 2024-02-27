@@ -1228,6 +1228,10 @@ ssize_t parse_content_disposition(char* dest, size_t destlen,
                                   const char** charsetp, size_t* charsetlenp,
                                   const char* in, size_t len, bool defaultUTF8)
 {
+  if (len>0 && in[len-1]==';'){
+    A2_LOG_NOTICE("Content-Disposition header field (RFC1806) minor corruption (trailing ';') - fixing");
+    --len;
+  }
   const char *p = in, *eop = in + len, *mark_first = nullptr,
              *mark_last = nullptr;
   int state = CD_BEFORE_DISPOSITION_TYPE;

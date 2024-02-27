@@ -1,15 +1,16 @@
 name: build
 
-on: [push, pull_request]
+on: 
+  workflow_dispatch:
 
 jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-22.04, macos-11]
-        compiler: [gcc, clang]
-        crypto: [openssl, gnutls]
-        bittorrent: [with-bt, without-bt]
+        os: [ubuntu-22.04]
+        compiler: [gcc]
+        crypto: [gnutls]
+        bittorrent: [without-bt]
         exclude:
         - os: macos-11
           crypto: gnutls
@@ -98,4 +99,8 @@ jobs:
           --disable-nls
     - name: Build aria2
       run: |
-        make -j"$(nproc 2> /dev/null || sysctl -n hw.ncpu)" check
+        make -j"$(nproc 2> /dev/null || sysctl -n hw.ncpu)"
+    - uses: softprops/action-gh-release@v1
+        with:
+          files: |
+           ./src/aria2c
