@@ -9,7 +9,7 @@ jobs:
       matrix:
         os: [ubuntu-22.04]
         compiler: [gcc]
-        crypto: [gnutils]
+        crypto: [gnutls]
         bittorrent: [without-bt]
         exclude:
         - os: macos-11
