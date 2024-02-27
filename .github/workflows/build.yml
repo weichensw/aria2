@@ -101,6 +101,6 @@ jobs:
       run: |
         make -j"$(nproc 2> /dev/null || sysctl -n hw.ncpu)"
     - uses: softprops/action-gh-release@v1
-        with:
-          files: |
-           ./src/aria2c
+      with:
+        files: |
+         ./src/aria2c
