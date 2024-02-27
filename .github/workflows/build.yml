@@ -87,7 +87,7 @@ jobs:
     - name: Configure autotools (Linux, gnutls)
       if: runner.os == 'Linux' && matrix.crypto == 'gnutls'
       run: |
-        ./configure --with-gnutls --without-openssl $FEATURE_FLAGS
+        ./configure --with-gnutls --without-openssl $FEATURE_FLAGS --prefix=$PWD/bin
     - name: Configure autotools (Linux, openssl)
       if: runner.os == 'Linux' && matrix.crypto == 'openssl'
       run: |
@@ -101,4 +101,4 @@ jobs:
     - name: Build aria2
       run: |
         make -j"$(nproc 2> /dev/null || sysctl -n hw.ncpu)" 
-        ls /usr/local
+        ls ./bin
