@@ -87,7 +87,7 @@ jobs:
     - name: Configure autotools (Linux, gnutls)
       if: runner.os == 'Linux' && matrix.crypto == 'gnutls'
       run: |
-        PREFIX=$PWD/bin
+        export PREFIX=$PWD/bin
         echo 'PREFIX='"$PREFIX" >> $GITHUB_ENV
         ./configure --with-gnutls --without-openssl $FEATURE_FLAGS
     - name: Configure autotools (Linux, openssl)
